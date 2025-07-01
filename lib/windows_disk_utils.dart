@@ -71,7 +71,7 @@ class DiskUtilsPlatform {
 
 /// Model representing disk information.
 class DiskInfo {
-  final String name;         // e.g., "C:"
+  final String name; // e.g., "C:"
   final int totalBytes;
   final int freeBytes;
   final int availableBytes;
@@ -146,9 +146,15 @@ class FileSystemEntityInfo {
       path: map['path'] as String,
       isDirectory: map['isDirectory'] as bool,
       size: map['size'] as int?,
-      created: map['created'] != null ? DateTime.tryParse(map['created']) : null,
-      modified: map['modified'] != null ? DateTime.tryParse(map['modified']) : null,
-      accessed: map['accessed'] != null ? DateTime.tryParse(map['accessed']) : null,
+      created: map['created'] != null
+          ? DateTime.tryParse(map['created'])
+          : null,
+      modified: map['modified'] != null
+          ? DateTime.tryParse(map['modified'])
+          : null,
+      accessed: map['accessed'] != null
+          ? DateTime.tryParse(map['accessed'])
+          : null,
     );
   }
 

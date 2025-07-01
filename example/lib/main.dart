@@ -32,7 +32,8 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     try {
       platformVersion =
-          await _windowsDiskUtilsPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _windowsDiskUtilsPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -58,9 +59,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin example app')),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -68,7 +67,10 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Running on: $_platformVersion\n'),
               const SizedBox(height: 16),
-              const Text('Available Disks:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Available Disks:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: _disks.length,
@@ -114,7 +116,11 @@ class _MyAppState extends State<MyApp> {
 class FolderViewScreen extends StatefulWidget {
   final String rootPath;
   final WindowsDiskUtils windowsDiskUtils;
-  const FolderViewScreen({required this.rootPath, required this.windowsDiskUtils, super.key});
+  const FolderViewScreen({
+    required this.rootPath,
+    required this.windowsDiskUtils,
+    super.key,
+  });
 
   @override
   State<FolderViewScreen> createState() => _FolderViewScreenState();
@@ -186,9 +192,13 @@ class _FolderViewScreenState extends State<FolderViewScreen> {
               itemCount: _entities.length,
               itemBuilder: (context, index) {
                 final entity = _entities[index];
-                final name = entity.path.split('\\').lastWhere((e) => e.isNotEmpty, orElse: () => entity.path);
+                final name = entity.path
+                    .split('\\')
+                    .lastWhere((e) => e.isNotEmpty, orElse: () => entity.path);
                 return ListTile(
-                  leading: Icon(entity.isDirectory ? Icons.folder : Icons.insert_drive_file),
+                  leading: Icon(
+                    entity.isDirectory ? Icons.folder : Icons.insert_drive_file,
+                  ),
                   title: Text(name),
                   subtitle: entity.isDirectory
                       ? const Text('Folder')

@@ -24,7 +24,9 @@ class MethodChannelWindowsDiskUtils extends WindowsDiskUtilsPlatform {
   /// Returns the Windows platform version as a string.
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>(
+      'getPlatformVersion',
+    );
     return version;
   }
 
@@ -40,8 +42,12 @@ class MethodChannelWindowsDiskUtils extends WindowsDiskUtilsPlatform {
   /// Lists the contents of a folder (files and subfolders).
   @override
   Future<List<FileSystemEntityInfo>> listFolder(String path) async {
-    final List entities = await methodChannel.invokeMethod('listFolder', {'path': path});
-    return entities.map((e) => FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(e))).toList();
+    final List entities = await methodChannel.invokeMethod('listFolder', {
+      'path': path,
+    });
+    return entities
+        .map((e) => FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(e)))
+        .toList();
   }
 
   /// Creates a folder at the given path.
@@ -59,14 +65,21 @@ class MethodChannelWindowsDiskUtils extends WindowsDiskUtilsPlatform {
   /// Lists files in a folder.
   @override
   Future<List<FileSystemEntityInfo>> listFiles(String path) async {
-    final List entities = await methodChannel.invokeMethod('listFiles', {'path': path});
-    return entities.map((e) => FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(e))).toList();
+    final List entities = await methodChannel.invokeMethod('listFiles', {
+      'path': path,
+    });
+    return entities
+        .map((e) => FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(e)))
+        .toList();
   }
 
   /// Creates a file at the given path, optionally with content.
   @override
   Future<bool> createFile(String path, [String? content]) async {
-    return await methodChannel.invokeMethod('createFile', {'path': path, 'content': content});
+    return await methodChannel.invokeMethod('createFile', {
+      'path': path,
+      'content': content,
+    });
   }
 
   /// Deletes a file at the given path.
@@ -84,13 +97,18 @@ class MethodChannelWindowsDiskUtils extends WindowsDiskUtilsPlatform {
   /// Writes content to a file at the given path.
   @override
   Future<bool> writeFile(String path, String content) async {
-    return await methodChannel.invokeMethod('writeFile', {'path': path, 'content': content});
+    return await methodChannel.invokeMethod('writeFile', {
+      'path': path,
+      'content': content,
+    });
   }
 
   /// Gets metadata for a file.
   @override
   Future<FileSystemEntityInfo?> getFileMetadata(String path) async {
-    final map = await methodChannel.invokeMethod('getFileMetadata', {'path': path});
+    final map = await methodChannel.invokeMethod('getFileMetadata', {
+      'path': path,
+    });
     if (map == null) return null;
     return FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(map));
   }
@@ -98,7 +116,9 @@ class MethodChannelWindowsDiskUtils extends WindowsDiskUtilsPlatform {
   /// Gets metadata for a folder.
   @override
   Future<FileSystemEntityInfo?> getFolderMetadata(String path) async {
-    final map = await methodChannel.invokeMethod('getFolderMetadata', {'path': path});
+    final map = await methodChannel.invokeMethod('getFolderMetadata', {
+      'path': path,
+    });
     if (map == null) return null;
     return FileSystemEntityInfo.fromMap(Map<String, dynamic>.from(map));
   }

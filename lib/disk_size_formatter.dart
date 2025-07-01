@@ -21,7 +21,11 @@ class DiskSizeFormatter {
   /// [binary]: If true, uses binary units (KiB, MiB, GiB). If false, uses SI units (KB, MB, GB).
   ///
   /// Returns a formatted string, e.g. '1.50 KiB' or '1.54 KB'.
-  static String formatBytes(int bytes, {int decimals = 2, bool binary = false}) {
+  static String formatBytes(
+    int bytes, {
+    int decimals = 2,
+    bool binary = false,
+  }) {
     if (bytes < 0) return '0 B';
     const suffixesSI = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB'];
     const suffixesBinary = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB'];
