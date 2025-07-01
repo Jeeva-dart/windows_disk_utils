@@ -1,3 +1,9 @@
+## 0.0.2
+
+- Improved documentation and usage examples.
+- Enhanced formatting and pub.dev compliance.
+- Bug fixes and code formatting improvements.
+
 ## 0.0.1
 
 - Initial release.
