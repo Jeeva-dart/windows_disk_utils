@@ -1,3 +1,11 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Initial release.
+- Windows-only Flutter plugin for disk, folder, and file utilities.
+- List all disks/partitions with detailed info (name, size, label, file system, etc.)
+- List folder contents (files and subfolders)
+- Create, delete, and list files/folders
+- Read and write file contents
+- Get file/folder metadata (size, timestamps, etc.)
+- Format byte sizes to human-readable strings (KB, MB, GB, etc.)
+- Includes example app and comprehensive documentation
