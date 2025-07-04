@@ -76,6 +76,11 @@ class DiskInfo {
   final int totalBytes;
   final int freeBytes;
   final int availableBytes;
+  final int? usedBytes;
+  final int? sectorsPerCluster;
+  final int? bytesPerSector;
+  final int? numberOfFreeClusters;
+  final int? totalNumberOfClusters;
   final String? volumeLabel;
   final String? fileSystem;
   final int? serialNumber;
@@ -88,6 +93,11 @@ class DiskInfo {
     required this.freeBytes,
     required this.availableBytes,
     this.driveType,
+    this.usedBytes,
+    this.sectorsPerCluster,
+    this.bytesPerSector,
+    this.numberOfFreeClusters,
+    this.totalNumberOfClusters,
     this.volumeLabel,
     this.fileSystem,
     this.serialNumber,
@@ -100,6 +110,8 @@ class DiskInfo {
   double get freeGB => freeBytes / (1024 * 1024 * 1024);
   double get availableKB => availableBytes / 1024;
   double get availableGB => availableBytes / (1024 * 1024 * 1024);
+  double? get usedKB => usedBytes != null ? usedBytes! / 1024 : null;
+  double? get usedGB => usedBytes != null ? usedBytes! / (1024 * 1024 * 1024) : null;
 
   factory DiskInfo.fromMap(Map<String, dynamic> map) {
     return DiskInfo(
@@ -108,6 +120,11 @@ class DiskInfo {
       totalBytes: map['totalBytes'] as int,
       freeBytes: map['freeBytes'] as int,
       availableBytes: map['availableBytes'] as int,
+      usedBytes: map['usedBytes'] as int?,
+      sectorsPerCluster: map['sectorsPerCluster'] as int?,
+      bytesPerSector: map['bytesPerSector'] as int?,
+      numberOfFreeClusters: map['numberOfFreeClusters'] as int?,
+      totalNumberOfClusters: map['totalNumberOfClusters'] as int?,
       volumeLabel: map['volumeLabel'] as String?,
       fileSystem: map['fileSystem'] as String?,
       serialNumber: map['serialNumber'] as int?,
@@ -121,6 +138,11 @@ class DiskInfo {
     'totalBytes': totalBytes,
     'freeBytes': freeBytes,
     'availableBytes': availableBytes,
+    'usedBytes': usedBytes,
+    'sectorsPerCluster': sectorsPerCluster,
+    'bytesPerSector': bytesPerSector,
+    'numberOfFreeClusters': numberOfFreeClusters,
+    'totalNumberOfClusters': totalNumberOfClusters,
     'volumeLabel': volumeLabel,
     'fileSystem': fileSystem,
     'serialNumber': serialNumber,

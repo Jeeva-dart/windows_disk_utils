@@ -87,9 +87,9 @@ class _MyAppState extends State<MyApp> {
                           'Free: ${disk.freeBytes} bytes\n'
                           '      ${disk.freeKB.toStringAsFixed(2)} KB\n'
                           '      ${disk.freeGB.toStringAsFixed(2)} GB\n'
-                          'Available: ${disk.availableBytes} bytes\n'
-                          '      ${disk.availableKB.toStringAsFixed(2)} KB\n'
-                          '      ${disk.availableGB.toStringAsFixed(2)} GB',
+                          'Used : ${disk.usedBytes} bytes\n'
+                          '      ${disk.usedKB} KB\n'
+                          '      ${disk.usedGB} GB',
                         ),
                         onTap: () {
                           Navigator.of(context).push(

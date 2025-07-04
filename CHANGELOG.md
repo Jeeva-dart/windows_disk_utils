@@ -1,3 +1,13 @@
+## 0.0.4
+
+- Added advanced drive space info fields to DiskInfo and C++ plugin:
+  - Used space (bytes, KB, GB)
+  - Sectors per cluster
+  - Bytes per sector
+  - Number of free clusters
+  - Total number of clusters
+- All new fields are available in the API and ready for use in apps.
+
 ## 0.0.3
 
 - Added drive type (fixed, removable, etc.) to disk info and example app.

@@ -104,12 +104,22 @@ void WindowsDiskUtilsPlugin::HandleMethodCall(
             case DRIVE_UNKNOWN:
             default: driveTypeStr = "unknown"; break;
           }
+          DWORD sectorsPerCluster = 0, bytesPerSector = 0, numberOfFreeClusters = 0, totalNumberOfClusters = 0;
+          if (GetDiskFreeSpaceW(root.c_str(), &sectorsPerCluster, &bytesPerSector, &numberOfFreeClusters, &totalNumberOfClusters)) {
+            // success
+          }
+          int64_t usedBytes = static_cast<int64_t>(totalNumberOfBytes.QuadPart) - static_cast<int64_t>(totalNumberOfFreeBytes.QuadPart);
           flutter::EncodableMap disk_info = {
             {flutter::EncodableValue("name"), flutter::EncodableValue(name)},
             {flutter::EncodableValue("driveType"), flutter::EncodableValue(driveTypeStr)},
             {flutter::EncodableValue("totalBytes"), flutter::EncodableValue(static_cast<int64_t>(totalNumberOfBytes.QuadPart))},
             {flutter::EncodableValue("freeBytes"), flutter::EncodableValue(static_cast<int64_t>(totalNumberOfFreeBytes.QuadPart))},
             {flutter::EncodableValue("availableBytes"), flutter::EncodableValue(static_cast<int64_t>(freeBytesAvailable.QuadPart))},
+            {flutter::EncodableValue("usedBytes"), flutter::EncodableValue(usedBytes)},
+            {flutter::EncodableValue("sectorsPerCluster"), flutter::EncodableValue(static_cast<int64_t>(sectorsPerCluster))},
+            {flutter::EncodableValue("bytesPerSector"), flutter::EncodableValue(static_cast<int64_t>(bytesPerSector))},
+            {flutter::EncodableValue("numberOfFreeClusters"), flutter::EncodableValue(static_cast<int64_t>(numberOfFreeClusters))},
+            {flutter::EncodableValue("totalNumberOfClusters"), flutter::EncodableValue(static_cast<int64_t>(totalNumberOfClusters))},
             {flutter::EncodableValue("volumeLabel"), flutter::EncodableValue(volumeLabel)},
             {flutter::EncodableValue("fileSystem"), flutter::EncodableValue(fileSystem)},
             {flutter::EncodableValue("serialNumber"), flutter::EncodableValue(static_cast<int64_t>(serialNumber))},
