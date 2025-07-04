@@ -92,8 +92,21 @@ void WindowsDiskUtilsPlugin::HandleMethodCall(
               fileSystem = std::string(buf.data());
             }
           }
+          UINT driveType = GetDriveTypeW(root.c_str());
+          std::string driveTypeStr;
+          switch (driveType) {
+            case DRIVE_REMOVABLE: driveTypeStr = "removable"; break;
+            case DRIVE_FIXED: driveTypeStr = "fixed"; break;
+            case DRIVE_REMOTE: driveTypeStr = "remote"; break;
+            case DRIVE_CDROM: driveTypeStr = "cdrom"; break;
+            case DRIVE_RAMDISK: driveTypeStr = "ramdisk"; break;
+            case DRIVE_NO_ROOT_DIR: driveTypeStr = "no_root_dir"; break;
+            case DRIVE_UNKNOWN:
+            default: driveTypeStr = "unknown"; break;
+          }
           flutter::EncodableMap disk_info = {
             {flutter::EncodableValue("name"), flutter::EncodableValue(name)},
+            {flutter::EncodableValue("driveType"), flutter::EncodableValue(driveTypeStr)},
             {flutter::EncodableValue("totalBytes"), flutter::EncodableValue(static_cast<int64_t>(totalNumberOfBytes.QuadPart))},
             {flutter::EncodableValue("freeBytes"), flutter::EncodableValue(static_cast<int64_t>(totalNumberOfFreeBytes.QuadPart))},
             {flutter::EncodableValue("availableBytes"), flutter::EncodableValue(static_cast<int64_t>(freeBytesAvailable.QuadPart))},

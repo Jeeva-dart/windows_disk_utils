@@ -1,3 +1,10 @@
+## 0.0.3
+
+- Added drive type (fixed, removable, etc.) to disk info and example app.
+- Refactored DiskInfo model to include driveType field.
+- Improved example app UI to show drive type for each disk.
+- **Next:** Implement drive letter to volume GUID/path mapping and display in API and example app.
+
 ## 0.0.2
 
 - Improved documentation and usage examples.

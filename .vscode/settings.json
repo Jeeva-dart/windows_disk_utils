@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "E:/workspace/flutter/plugins/windows_disk_utils/windows"
+    "cmake.sourceDirectory": "E:/workspace/flutter/plugins/windows_disk_utils/windows",
+    "files.associations": {
+        "chrono": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp"
+    }
 }

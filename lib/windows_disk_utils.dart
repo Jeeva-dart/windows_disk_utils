@@ -72,6 +72,7 @@ class DiskUtilsPlatform {
 /// Model representing disk information.
 class DiskInfo {
   final String name; // e.g., "C:"
+  final String? driveType; // e.g., "fixed", "removable", etc.
   final int totalBytes;
   final int freeBytes;
   final int availableBytes;
@@ -80,11 +81,13 @@ class DiskInfo {
   final int? serialNumber;
   final int? fileSystemFlags;
 
+  /// [driveType] is one of: fixed, removable, remote, cdrom, ramdisk, no_root_dir, unknown.
   DiskInfo({
     required this.name,
     required this.totalBytes,
     required this.freeBytes,
     required this.availableBytes,
+    this.driveType,
     this.volumeLabel,
     this.fileSystem,
     this.serialNumber,
@@ -101,6 +104,7 @@ class DiskInfo {
   factory DiskInfo.fromMap(Map<String, dynamic> map) {
     return DiskInfo(
       name: map['name'] as String,
+      driveType: map['driveType'] as String?,
       totalBytes: map['totalBytes'] as int,
       freeBytes: map['freeBytes'] as int,
       availableBytes: map['availableBytes'] as int,
@@ -113,6 +117,7 @@ class DiskInfo {
 
   Map<String, dynamic> toMap() => {
     'name': name,
+    'driveType': driveType,
     'totalBytes': totalBytes,
     'freeBytes': freeBytes,
     'availableBytes': availableBytes,

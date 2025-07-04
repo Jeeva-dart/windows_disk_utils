@@ -80,6 +80,7 @@ class _MyAppState extends State<MyApp> {
                       child: ListTile(
                         title: Text(disk.name),
                         subtitle: Text(
+                          'Type: ${disk.driveType ?? 'unknown'}\n'
                           'Total: ${disk.totalBytes} bytes\n'
                           '      ${disk.totalKB.toStringAsFixed(2)} KB\n'
                           '      ${disk.totalGB.toStringAsFixed(2)} GB\n'
