@@ -3,7 +3,7 @@
 A Flutter plugin for Windows that provides comprehensive disk, folder, and file utilities. Easily retrieve disk information, list folders and files, perform file operations, and format byte sizes for display.
 
 ## Features
-- List all disks/partitions with detailed info
+- List all disks/partitions with detailed info (including drive type, space info, sectors/cluster, bytes/sector, clusters)
 - List folder contents (files and subfolders)
 - Create, rename, and delete files/folders
 - Read and write file contents
@@ -29,8 +29,14 @@ void main() async {
   final disks = await diskUtils.getDisks();
   for (final disk in disks) {
     print('Drive: ${disk.name}');
+    print('  Type: ${disk.driveType}');
     print('  Total: ${DiskSizeFormatter.formatBytes(disk.totalBytes)}');
     print('  Free:  ${DiskSizeFormatter.formatBytes(disk.freeBytes)}');
+    print('  Used:  ${DiskSizeFormatter.formatBytes(disk.usedBytes ?? 0)}');
+    print('  Sectors/Cluster: ${disk.sectorsPerCluster}');
+    print('  Bytes/Sector: ${disk.bytesPerSector}');
+    print('  Free Clusters: ${disk.numberOfFreeClusters}');
+    print('  Total Clusters: ${disk.totalNumberOfClusters}');
     print('  Label: ${disk.volumeLabel}');
     print('  File System: ${disk.fileSystem}');
   }

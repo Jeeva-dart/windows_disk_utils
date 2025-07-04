@@ -1,7 +1,7 @@
 name: windows_disk_utils
 description: >-
   A comprehensive Flutter plugin for Windows that provides disk, folder, and file utilities.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/Jeeva-dart/windows_disk_utils
 repository: https://github.com/Jeeva-dart/windows_disk_utils
 issue_tracker: https://github.com/Jeeva-dart/windows_disk_utils/issues
